@@ -24,6 +24,8 @@ class PlayerActions:
         if type(person) == person.Person:
             print (person.Person.dialog)
 
+    
+
 
 
 
