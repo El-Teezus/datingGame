@@ -1,4 +1,7 @@
 class BeachP:
+    """
+    should we merge the instances of Beach with the rooms and what not?
+    """
     BeachQuestion = ["", ""]
 
     def __init__(self):
