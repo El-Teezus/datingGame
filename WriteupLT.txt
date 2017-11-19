@@ -1,0 +1,41 @@
+##################################################################################
+
+
+The Synonym Engine
+
+
+##################################################################################
+
+The Synonym Engine allows the user to talk to the console in more ways than you would in other games. Synonym Engine is the Controller Pattern, used to Control the instances of a Command Pattern.
+
+The way it works thus far -- or is purported to work -- is as follows:
+I.) A verb, noun progression system -- simple enough.
+II.) The verb is your action, and the arguments handle this by using a bunch of common phrases and then finding the right one in that phrase, later passing the variable to a selector, which then calls the functions from an actions class in Player.
+III.) The noun system will then sort through your objects according to your location, and then see if there is an argument in the object field that can be matched.
+IV.) The actions are then executed.
+
+
+Decoupling and Abstracting the Code ->
+
+    At some point, I am going to need to start sending the synonym engine into something relating to the        controller. Parsing arguments for items is going to require that the item be parsed first, then the type    of the matched item be examined.
+
+    This way, the code is not redone over and over again.
+
+Logically sort out the code ->
+
+    The code for the synonym engine is going to need to be sorted out and made to apply to other things
+
+
+Object Synonyms ->
+Begins with having an Array, the ObjectArray
+    Then it has arrays inside that Array - Setpiece, Location, Item, People
+        Each item inside that Array has its own Array that it parses to.
+
+Iteration 1 is going to have everything in the same location, the point is just to have the objects go through
+> Parse the action used, and then use that for the switcher.
+> Take the rest of the string, and then use that for the switcher
+> Figure out what things are going to use what for arugments.
+
+Iteration 2 _> but once the locations are coded, each object is going to go through there to prevent the player from having been in that location.
+
+Iteration 3 should probably use an iteration of code where it will push a list of objects and automatically construct respective arrays based off what is pushed there. Location constructors pushing things would be really cool.

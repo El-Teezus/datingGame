@@ -49,17 +49,19 @@ class Player:
         self.name = name
 
 
-player = Player("plains", "Hiro")
+player = Player("the plains", "Hiro")
 
 class Map:
     """
     consults the roomArray so that we can change rooms and have interactivity.
     """
     roomArray = [ThePlace, wayward_souls]
+    location_synonym = [wayward_souls.name, ThePlace.name]
     def change_room(request):
-        if player.location == request:
-            print("you are already there")
         for room in Map.roomArray:
+            if player.location == request:
+                print("you are already there")
+                break
             if request == room.name:
                 print(player.location)
                 player.location = room.name

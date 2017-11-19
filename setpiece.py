@@ -8,3 +8,7 @@ class SetPiece:
         self.pickup = False
         self.desc = desc
         self.location = location
+
+theDragon = SetPiece(550, 'dragon', 'better run. better pray', 'village')
+barSetPiece = SetPiece(445, 'bar', 'call your friends and get drunk', 'village')
+setPieceList = [theDragon, barSetPiece]

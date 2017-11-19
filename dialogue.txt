@@ -1,0 +1,19 @@
+######################################################################################################################
+
+
+
+                Dialogue System - Hannah
+
+
+
+
+#####################################################################################################################
+
+
+
+
+Okay so what I’m thinking is we have all the characters have a value for their relationship, and depending on the specific section of the game they’ll have access to different sets of dialog. Like a neutral section(option 1-5), a like section(1-5), and a love section(1-5). And each response can bump you up or down to a different section, and after the dialog from the section is spoken it gets removed from the list.
+
+So it can get to a point where you’re at love but you answer too many things wrong, then it bumps you to like, and you get them wrong so you bump to neutral, and then you bump down to hate. Its not always the same stuff you know? Keeps you on your toes.
+
+So that way the story branches out to be somewhat linear in regards to time, but the dialog you experience is random/always changing.
