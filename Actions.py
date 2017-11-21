@@ -3,9 +3,12 @@ import setpiece
 import Item
 import Player
 import Room
+#import synonym_system
+import DataMaster
+
 
 class PlayerActions:
-    ### a class with all the player actions to interact while in the overworld
+    # a class with all the player actions to interact while in the overworld
 
     # def check(checkit):
     #     #### check objects before they are interacted with.
@@ -26,31 +29,42 @@ class PlayerActions:
 
     action_synonym = [location_actions_synoym, item_actions_synonym, person_actions_synonym, get_access_itemSynonym, check_access_synonym]
 
-
     def use(item):
-        ##use item has some issues with keeping the item's effect
+        # use item has some issues with keeping the item's effect
         if type(item) == Item.Item:
             item.used = True
             return item.used
+    # alternate dialogues according to what you're trying to talk to
+    #   > person: are you a sociopath? you can't just use people like that.
+    #   > setpiece: Everyone uses that. Stop being entitled
+    #   > location: I think you're looking for the toilet.
 
-    def talk(person):
-    #     #### talk to a person, return key dialog
-    #     #### if the class of object is a person
-        if type(person) == person.Person:
-            print (person.Person.dialog)
-
-
+    def talk(livingThing):
+        # talk to a person, return key dialog
+        # if the class of object is a person
+        # this gets triggered when the synonym for talk is returned
+        for synonymObjs in DataMaster.DataMaster.object_synonyms:
+            for objs in synonymObjs:
+                if objs.name in livingThing:
+                    print(objs.dialog)
+                    # if type(livingThing) == person.Person:
+                    #     print(livingThing)
+    # alternate dialogues according to what you're trying to talk to
+    #   > item: holding the item.name, and trying to talk to it, nothing happened
+    #   > setpiece: I recommend not doing that. someone could have you taken away to be studied.
+    #   > location: Trying to write a story I see?
 
     def check(thing):
-        setpiece_synonym = [setpiece.theDragon]
+        setpiece_synonym = [setpiece.theDragon, setpiece.computerSetPiece, setpiece.barSetPiece]
         location_synonym = []
         item_synonym = []
         people_synonym = []
         objectSynonyms = [setpiece_synonym, location_synonym, item_synonym, people_synonym]
+        print(thing)
     # resolves the name of the item - objectSynonyms will be used
         for synonymList in objectSynonyms:
             for syonymItem in synonymList:
-                if thing == syonymItem.name:
+                if syonymItem.name in thing:
                     # returns the check description item.
                     # next the player location and the thing location needs to be verified.
                     print(syonymItem.desc)
@@ -66,8 +80,7 @@ class PlayerActions:
     #         print(thing.desc)
 
 
-    check('dragon')
-
+LT = person.Person('hi', 'its me', 'here', 'LT')
 
 #mykyffn = Item.Item(553, "The mykyffn", "don't look in the box", "bar")
 #print(mykyffn.used)

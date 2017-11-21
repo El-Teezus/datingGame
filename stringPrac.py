@@ -16,7 +16,6 @@ def fixString(sentence):
         if word in sentence:
             sentence = sentence.replace(word, " ")
     sentence = sentence.replace(" ", "")
-    print(sentence)
     return sentence
 
 

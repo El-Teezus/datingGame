@@ -7,12 +7,20 @@ Data Master will hold an instance for the class
 -Feeds information to the Initializer, which is a Pattern Instance of Singleton
 
 """
+import person
+
+
 class DataMaster:
 
-LocationRegistry():
-
-ItemRegistry():
-
-PlaceRegistry():
-
-DateRegistry():
+    item_synonym = ['sword', 'sigil', 'dagger']
+    person_object_synonym = person.personList
+    setpiece_synonym = ['dragon', 'buildings', 'inn' ]
+    dateable_synonym = ['date1', 'date 2', 'date 3']
+    object_synonyms = [person_object_synonym]
+    # LocationRegistry():
+    #
+    # ItemRegistry():
+    #
+    # PlaceRegistry():
+    #
+    # DateRegistry():

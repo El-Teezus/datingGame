@@ -17,7 +17,7 @@ def main():
     print(gameDesc)
     while itsrunning == "true":
         Controller.inputmessage = input('what are you going to do?')
-        Controller.trymessage()
+        Controller.trymessage(Controller.inputmessage)
 
 main()
 

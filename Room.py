@@ -40,16 +40,23 @@ class Bar(Room):
         self.desc = desc
 
 
-ThePlace = Plains("the plains", "It's the plains")
-wayward_souls = Bar("the bar", "go get drunk")
+ThePlace = Plains("plains", "It's the plains")
+wayward_souls = Bar("bar", "to alcohol. the cause and solution to all of lifes problems")
 
 class Player:
     def __init__(self, location, name):
         self.location = location
         self.name = name
 
+def locationLoader():
+    """
+    loads the objects in the location into their respective spots so the player is able to easily access array's. Objects will be loaded according to type. This is to save resources.
+    :return:
+    """
 
-player = Player("the plains", "Hiro")
+
+
+player = Player("plains", "Hiro")
 
 class Map:
     """
@@ -59,10 +66,10 @@ class Map:
     location_synonym = [wayward_souls.name, ThePlace.name]
     def change_room(request):
         for room in Map.roomArray:
-            if player.location == request:
+            if player.location in request:
                 print("you are already there")
                 break
-            if request == room.name:
+            if room.name in request:
                 print(player.location)
                 player.location = room.name
                 print("TEST: you are now in " + room.name + " which should be the " + player.location)

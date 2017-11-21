@@ -29,10 +29,6 @@ import stringPrac
 #
 # action_synonym = [location_actions_synoym, item_actions_synonym, person_actions_synonym, get_access_itemSynonym, check_access_synonym]
 
-item_synonym = ['sword', 'sigil', 'dagger']
-person_object_synonym = ['stuck man', 'elf', 'small girl', 'shopkeep' ]
-setpiece_synonym = ['dragon', 'buildings', 'inn' ]
-dateable_synonym = ['date1', 'date 2', 'date 3']
 
 # def access_words():
 #     for wordlist in master_synonym:
@@ -83,24 +79,25 @@ def objectAccess(word):
 #
 # synonyms('go to the plains')
 
-def selector(actionArg, restofphrase):
+
+def selector(actionArgument, restofphrase):
     for actionArg in Actions.PlayerActions.action_synonym:
-        if actionArg == Actions.PlayerActions.location_actions_synoym:
+        if actionArgument == Actions.PlayerActions.location_actions_synoym:
             Room.Map.change_room(restofphrase)
             break
-        elif actionArg == Actions.PlayerActions.item_actions_synonym:
+        elif actionArgument == Actions.PlayerActions.item_actions_synonym:
             print('hoi')
             break
-        elif actionArg == Actions.PlayerActions.person_actions_synonym:
-            print('how are you')
+        elif actionArgument == Actions.PlayerActions.person_actions_synonym:
+            Actions.PlayerActions.talk(restofphrase)
             break
-        elif actionArg == Actions.PlayerActions.get_access_itemSynonym:
+        elif actionArgument == Actions.PlayerActions.get_access_itemSynonym:
             print('leskeddit')
             break
-        elif actionArg == Actions.PlayerActions.check_access_synonym:
-            Actions.check(restofphrase)
+        elif actionArgument == Actions.PlayerActions.check_access_synonym:
+            Actions.PlayerActions.check(restofphrase)
             break
-        elif actionArg == Actions.PlayerActions.quit_game_synonym:
+        elif actionArgument == Actions.PlayerActions.quit_game_synonym:
             print('its, me')
             break
 
@@ -120,21 +117,19 @@ def synonymTest(phrase):
     for wordlist in Actions.PlayerActions.action_synonym:
         for word in wordlist:
             if word in changePhrase:
-                actionArg = wordlist
+                actionArgument = wordlist
                 break
     restofphrase = changePhrase[-len(word) + 1:]
-    print(restofphrase)
-    print(actionArg)
+    selector(actionArgument, restofphrase)
     #print(restofphrase)
     #objectAccess(restofphrase)
     # print(wordlist)
     # print(word)
     # print(actionArg)
     # print(restofphrase)
-    # selector(actionArg, restofphrase)
 
 
-synonymTest('move to the bar')
+#synonymTest('talk to LT')
 
 
 
@@ -144,10 +139,6 @@ def Test(synonymWord):
     """
     new_word = inputmessage[0:len(synonymWord)]
     inputmessage = 'examine statue'
-    print(len(synonymWord))
-    print(new_word == synonymWord)
-    print(new_word)
-    print(inputmessage[len(synonymWord)])
-    print(inputmessage[len(synonymWord) + 1:])
+
 
 #Test('examine statue')
