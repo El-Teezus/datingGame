@@ -5,7 +5,7 @@ import Player
 import Room
 #import synonym_system
 import DataMaster
-
+import systemMessage
 
 class PlayerActions:
     # a class with all the player actions to interact while in the overworld
@@ -19,15 +19,17 @@ class PlayerActions:
 
     item_actions_synonym = ['use', 'apply', 'implement', 'deploy']
 
-    person_actions_synonym = ['talk', 'speak with', 'conversate with', 'roundtable with']
+    person_actions_synonym = ['talk', 'speak', 'conversate', 'roundtable']
 
     get_access_itemSynonym = ['take', 'grab', 'acquire']
 
     check_access_synonym = ['look', 'check', 'examine', 'view', 'look']
 
-    quit_game_synonym = ['stop playing', 'end game', 'quit process', 'die', 'an hero']
+    quit_game_synonym = ['stop', 'end', 'quit', 'die', 'anhero']
 
-    action_synonym = [location_actions_synoym, item_actions_synonym, person_actions_synonym, get_access_itemSynonym, check_access_synonym]
+    help_game_synonym = ['help', 'assist', 'commands', 'actions']
+
+    action_synonym = [location_actions_synoym, item_actions_synonym, person_actions_synonym, get_access_itemSynonym, check_access_synonym, help_game_synonym, quit_game_synonym]
 
     def use(item):
         # use item has some issues with keeping the item's effect
@@ -46,6 +48,7 @@ class PlayerActions:
         for synonymObjs in DataMaster.DataMaster.object_synonyms:
             for objs in synonymObjs:
                 if objs.name in livingThing:
+                    systemMessage.MessageGenerator.actionMessage('talked to', objs.name)
                     print(objs.dialog)
                     # if type(livingThing) == person.Person:
                     #     print(livingThing)
@@ -67,6 +70,7 @@ class PlayerActions:
                 if syonymItem.name in thing:
                     # returns the check description item.
                     # next the player location and the thing location needs to be verified.
+                    systemMessage.MessageGenerator.actionMessage('checked', syonymItem.name)
                     print(syonymItem.desc)
 
     # confirmTypeArray = [Item.Item, Player.Player, setpiece.SetPiece, Room.Room, person.Person]
@@ -79,6 +83,16 @@ class PlayerActions:
     #         thing.examined = 'true'
     #         print(thing.desc)
 
+    def help():
+        print('You can do the following things: \n' +
+              '    Talk to people \n' +
+              '    Check things out \n' +
+              '    Go to different locations \n' +
+              '    Use items \n' + '    Good Luck!\n')
+
+    def quitgame():
+        print('Thanks for Playing!')
+        quit()
 
 LT = person.Person('hi', 'its me', 'here', 'LT')
 

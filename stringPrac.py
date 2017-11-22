@@ -4,11 +4,7 @@ def fixString(sentence):
     cutWords = [' the ', ' at ', ' to ', ' with ', ' the ', ' on ', ' like ']
     """
     Fix string allows the System to better understand user arguments.
-    ____>>>>Iteration One: Eliminates whitespace.
-    Iteration Two: Eliminates punctuation
-    Iteration Three:
-    :param sentence:
-    :return:
+    Eliminates whitespace, and irrelevant words from what is passed into the console.
     """
     ### The next iteration will remove punctuation.
     sentence = sentence.lower()

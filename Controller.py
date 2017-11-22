@@ -17,11 +17,7 @@ def fixString(sentence):
     cutWords = [' the ', ' at ', ' to ', ' with ', ' the ', ' on ', ' like ']
     """
     Fix string allows the System to better understand user arguments.
-    ____>>>>Iteration One: Eliminates whitespace.
-    Iteration Two: Eliminates punctuation
-    Iteration Three:
-    :param sentence:
-    :return:
+    Eliminates whitespace, and irrelevant words from what is passed into the console.
     """
     ### The next iteration will remove punctuation.
     sentence = sentence.lower()
@@ -33,6 +29,12 @@ def fixString(sentence):
 
 
 def selector(actionArgument, restofphrase):
+    """
+    The selector works to route the pattern
+    :param actionArgument:
+    :param restofphrase:
+    :return:
+    """
     for actionArg in Actions.PlayerActions.action_synonym:
         if actionArgument == Actions.PlayerActions.location_actions_synoym:
             Room.Map.change_room(restofphrase)
@@ -50,7 +52,10 @@ def selector(actionArgument, restofphrase):
             Actions.PlayerActions.check(restofphrase)
             break
         elif actionArgument == Actions.PlayerActions.quit_game_synonym:
-            print('its, me')
+            Actions.PlayerActions.quitgame()
+            break
+        elif actionArgument == Actions.PlayerActions.help_game_synonym:
+            Actions.PlayerActions.help()
             break
 
 def synonymTest(phrase):
@@ -71,8 +76,6 @@ def synonymTest(phrase):
                 actionArgument = wordlist
                 break
     restofphrase = changePhrase
-    print(restofphrase)
-    print(actionArgument)
     selector(actionArgument, restofphrase)
     #print(restofphrase)
     #objectAccess(restofphrase)
