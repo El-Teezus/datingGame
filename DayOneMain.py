@@ -31,11 +31,11 @@ def barmain():
 def dragonmain():
     print('A horse’s hooves echoed on the cobblestone path. Behind it, a man atop a small carriage whistles softly as the day broke on the horizon. It was a warm summer day, and you could feel the wind blow across your face. You see a small town in the distance, and you’re happy your long journey is almost over. You hear a low rumbling in the distance which you think is strange, but the man before you interrupts your thoughts.')
     print()
-    print('\"You doin\' someth\'n \'ere in Aria? Not many people come to this small town, \'cept for the traders.')
+    print('\"You doin\' someth\'n \'ere in -townTBD-? Not many people come to this small town, \'cept for the traders.')
     print()
-    print('You thank the man for the ride and put a single coin into his hand. He tips his hat at you and spurs his horse forward, continuing on his own journey. You look toward the town and can hear the bustling of people within. You head inside through the main gates and look around.   ')
+    print('You nod your head as the carridge slows to a stop. As you thank the man for the ride, you put a single coin into his hand. He tips his hat at you and spurs his horse forward, continuing on his own journey. You look toward the town and can hear the bustling of people within. You head inside through the main gates and look around.   ')
     print()
-    print('The town square is bustling people, with... You hear a loud roar, and look around in confusion. Others around you also stop what they’re doing to look toward the sky. It seems even closer than before, and after a few seconds you head toward one of the guards to ask about it.')
+    print('The town square is bustling people, with traders advertising their fares, women pulling their children along, and shoppers shuffling about. You hear a loud roar, and look around in confusion. Others around you also stop what they’re doing to look toward the sky. It seems even closer than before, and after a few seconds you head toward one of the guards to ask about it.')
     print()
     print('Suddenly, you see a massive shadow cast on the ground. A deafening roar is heard above your head, and the earth shudders as a massive shadow lands in front of you. The force of the landing pushes you to the ground, and you cover your eyes from the blast of wind. You hear shrieks of the townspeople and the soldiers frantically running around you, and you scramble to get up.')
     print()
@@ -66,11 +66,16 @@ def dragonmain():
             print('You shake her off, and continue on your way. "Wait!” she screams and grabs you again. You yank back your wrist and she falls backwards.')
             print('“Abigail!!”, the man huffs from under the rubble. He glares at you as you turn and run, and you hear another roar. As you get closer to the castle, you hear her sobs getting quieter and quieter.')
         elif selection == "Help them" or selection == "2":
-            print('Yay good stuff happens!')
+            print('You bend down next to the girl and wrap your hands around the lumber. As you try to stand, you realize it\'s much heavier than you expected. The man tries again to push the heavy weight off his chest, and you can see perspiration dripping down his face. Behind you, you hear the small girl gasp.')
+            print()
+            print('You whip your head backwards. The dragon\'s horns peak over the edge of a tall building, breathing fire across the path. Knowing you have little time, your push harder. Your muscles strain from the effort but the beam does not budge..')
+            print('"Papa, he see\'s us!"')
+            print('The ground starts to rumble behind you. You\'re muscles flex and you feel the strength seeping from your limbs. A high pitched screech sounds and the girl beside starts to tremble. You can hear the monster\'s claws dragging along the ground, and know you only have a few more seconds.    ')
         else:
             print('Make legal selection')
     else:
         print('Make legal selection')
+    print('What happens next?')
 
 dragonmain()
 
