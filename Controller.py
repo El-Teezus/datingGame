@@ -9,8 +9,10 @@ import Room
 import Player
 import synonym_system
 import Actions
+import DayOneMain
 
 inputmessage = ''
+
 
 
 def fixString(sentence):
@@ -58,7 +60,7 @@ def selector(actionArgument, restofphrase):
             Actions.PlayerActions.help()
             break
 
-def synonymTest(phrase):
+def synonyms(phrase):
     """
     The Synonym Engine.
     Gives the player extra functionality by allowing them to use
@@ -70,58 +72,16 @@ def synonymTest(phrase):
     _____>> Next step is to integrate the fixString and TestWord from stringPrac into the Program
     """
     changePhrase = fixString(phrase)
-    for wordlist in Actions.PlayerActions.action_synonym:
-        for word in wordlist:
-            if word in changePhrase:
-                actionArgument = wordlist
-                break
-    restofphrase = changePhrase
-    selector(actionArgument, restofphrase)
-    #print(restofphrase)
-    #objectAccess(restofphrase)
-    # print(wordlist)
-    # print(word)
-    # print(actionArg)
-    # print(restofphrase)
-
-
-#synonymTest('talk to LT')
-
-# def GoTos(whatstheword):
-#     """
-#
-#     :param whatstheword:
-#     :return:
-#     """
-#     for room in Room.Map.roomArray:
-#         if whatstheword == room.name:
-#             Player.LT.location = room.name
-#             print('you went to ' + room.name)
-#             print(Player.LT.location)
-#             break
-#         elif whatstheword == 'help':
-#             print('enter check map to view locations')
-#             break
-
-    # elif whatstheword == 'the bar':
-    #     print('you went to the bar')
-    # elif whatstheword == 'the library':
-    #     print('you went to the library')
-    # elif whatstheword == 'the coffee house':
-    #     print('you went to the coffee house')
-    # elif whatstheword == 'the night club':
-    #     print('you went to the night club')
-
-# def TheUseIts(whatstheword):
-#     if whatstheword == 'the mykyffn':
-#         print('in game if you use this at the wrong time, you die')
-#     elif whatstheword == 'the sword':
-#         print('you give this to the warrior')
-#     else:
-#         print("i don't know what you're talking about")
-
-# def cheggit(helpWith):
-#     if helpWith == 'locations' or 'the map' or 'places' or 'map':
+    try:
+        for wordlist in Actions.PlayerActions.action_synonym:
+            for word in wordlist:
+                if word in changePhrase:
+                    actionArgument = wordlist
+                    break
+        restofphrase = changePhrase
+        selector(actionArgument, restofphrase)
+    except UnboundLocalError:
+        print("didn't work")
 
 
 def trymessage(phrase):
@@ -129,7 +89,7 @@ def trymessage(phrase):
     passes off arguments to other things
     :return:
     """
-    synonymTest(phrase)
+    synonyms(phrase)
     # if inputmessage[0:5] == 'go to':
     #     ### inputmessage is going to use the synonym system
     #     GoTos(inputmessage[6:])
