@@ -1,0 +1,41 @@
+####################################################################################
+
+HOW TO GET INFORMATION TO SWITCH FROM CONSOLE TO DATING
+
+
+####################################################################################
+
+
+
+>>>>>BEGIN BY LINKING THE COUPLING TO THE DATABLE PERSON.
+
+>>>>>SOMEHOW LINK THE DIALOGUE TO START FROM A DATABLE CHARACTER
+
+>>>>>Change its internal state-- event, overworld, worldmap
+
+Statepattern makes the scenario in the controller which changes the views and controller. This means that it takes a data model and changes it when running true, and then
+
+MODEL > ALL OUR DATAS AND STUFF
+
+
+
+VIEW > THE PUSHING SYSTEM
+    DECOUPLE STUFF FROM THE MACHINES AND MAKE THEM SHOW UP
+    VIEW IS GOING TO HAVE OUR DATA AND STUFF AND THEN PUSH STUFF TO CONTROLLER AND    THE ROUTES
+
+
+CONTROLLER > PUSHES THE REQUEST
+    THERE ARE OBSERVERS WHICH HANDLE IT.
+    LOGIC: JUST AND GATES MOSTLY.
+    HIERARCHICAL GATES CONTROL THAT WHICH TAKES IN ARGUMENTS OR SOMETHING.
+
+if mode == overworld
+
+if mode == plot
+
+what are plot objects
+
+
+if mode == dating
+
+we build the dating object
