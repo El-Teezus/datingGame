@@ -16,7 +16,7 @@ def load_emma_gifts():
     return d
 
 
-def main():
+def brunette():
     inventory = load_inventory()
     emma_gifts = load_emma_gifts()
     d = Dialog()
@@ -188,4 +188,4 @@ def main():
         selection = input('--->   ')
 
 
-main()
+brunette()
