@@ -159,7 +159,7 @@ def brunette():
                                 d.remove(s, "dislike")
                                 emma.relationship = emma.relationship -5
                                 print('\nWow, alright. I actually have things better to do, so maybe you should just leave me alone.')
-                        elif s == 'You didn\'t help Max during the dragon attack?':
+                        elif s == 'You didn\'t help Arnold during the dragon attack?':
                             print('1.) Everyone needs to look out for themselves. I could have died trying to save them too.')
                             print('2.) No, I was a coward. I regret it deeply.')
                             selection = input('--->   ')
