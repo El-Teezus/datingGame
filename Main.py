@@ -1,4 +1,4 @@
-import blond
+import blonde
 import redhead
 import brunette
 
@@ -7,12 +7,20 @@ class Main:
     #list of Locations
     loclist = ["tavern","woods","castle"]  
     #List of Dates
-    datelist = ["Blond","Red-Head","Brunette"]
+    datelist = ["Blonde","Brunette","Red-Head"]
     #List of Date Atributes
-    DatesDetails = ["Long blond hair, Five feet 3 inches, likes sailing", "Short burnette", "Red-Head, Four Foot 11"]
-
+    DatesDetails = ["Long blonde hair, Five feet 3 inches, likes metal art", "Short burnette", "Red-Head, Four Foot 11"]
     AlreadyDated = [0,0,0]
     currentdate = -1
+    
+    #List of Gifts
+    Giftlist = ["Gift 1","Gift 2","Gift 3"]
+    #List of Date Atributes
+    GiftPoints = [10,0,-10]
+    AlreadyGifted = [0,0,0]
+    currentGift = -1
+
+    
     DayNumber = 1
 
     currentScore = 0
@@ -27,8 +35,8 @@ def questions():
         questionLevel = 0   # questions 1-3
 
     #Load the right set of questions
-    if Main.datelist[Main.currentdate] == "Blond":
-        listofQuestions = blond.BlondC.Questions[questionLevel]
+    if Main.datelist[Main.currentdate] == "blonde":
+        listofQuestions = blonde.blondeC.Questions[questionLevel]
     elif Main.datelist[Main.currentdate] == "Red-Head":
         listofQuestions = redhead.redheadC.Questions[questionLevel]
     elif Main.datelist[Main.currentdate] == "Brunette":
@@ -55,6 +63,37 @@ def questions():
 
     print("Current Score is: ", Main.currentScore)
 
+def chooseGift():
+    ix = -1
+    numberOfAvailableGifts = 0   
+    Main.currentGift = -1
+    print("\nYou can choose a gift if you want to give or enter a 0 to not give a gift." )
+    for Gift in Main.Giftlist:    
+        ix = ix + 1
+        if Main.AlreadyGifted[ix] == 0:
+            numberOfAvailableGifts = numberOfAvailableGifts + 1
+            print("Gift", ix + 1, " is a ", Gift)
+
+    while int(Main.currentGift) <  0  or int(Main.currentGift) > 3: 
+        Main.currentGift = input("\nEnter the number of the Gift you would like to Give.\n")
+        if not Main.currentGift.isdigit(): #check if numeric
+            Main.currentGift = -1 #force to reask question
+
+    if int(Main.currentGift) == 0:
+        print("Cheapskate!")
+    else:
+        Main.currentGift = int(Main.currentGift) - 1  # index is actually 1 less than the input
+        if Main.GiftPoints[Main.currentGift] > 0:
+            print("She loved your gift and you just earned a bonus of ", Main.GiftPoints[Main.currentGift], " points!" )        
+            Main.currentScore = Main.currentScore + Main.GiftPoints[Main.currentGift]
+        elif GiftPoints[Main.currentGift] < 0:
+            print("She hated your gift and you just lost ", Main.GiftPoints[Main.currentGift], " points!" )
+            Main.currentScore = Main.currentScore + Main.GiftPoints[Main.currentGift]
+        else:        
+            print("She didn't like or hate your gift... Pretty Lame\n" )
+        Main.AlreadyGifted[Main.currentGift] = 1  #Mark Gifted
+
+    questions()
 
 def chooseDate():
     ix = -1
@@ -65,7 +104,7 @@ def chooseDate():
         if Main.AlreadyDated[ix] == 0:
             numberOfAvailableDates = numberOfAvailableDates + 1
             print("Date", ix + 1, " is a ", date)
-            print( "   ", Main.DatesDetails[ix] ," \n")
+            print( "   ", Main.DatesDetails[ix] )
 
     while int(Main.currentdate) <  1  or int(Main.currentdate) > 3: 
         Main.currentdate = input("Enter the number of the person you would like to date.\n")
@@ -75,12 +114,18 @@ def chooseDate():
     Main.currentdate = int(Main.currentdate) - 1  # index is actually 1 less than the input
     print("You are now on a date with the ", Main.datelist[Main.currentdate] )
     Main.AlreadyDated[Main.currentdate] = 1  #Mark Dated
-    questions()
+    chooseGift()
+
+
 
 
 def main():
 
     currentlocation = "start"
+
+    from pathlib import Path
+    contents = Path("intro.txt").read_text()
+    print(contents)
 
     #Loop 3 times... or days
     while Main.DayNumber <= 3:
