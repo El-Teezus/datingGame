@@ -35,8 +35,8 @@ def questions():
         questionLevel = 0   # questions 1-3
 
     #Load the right set of questions
-    if Main.datelist[Main.currentdate] == "blonde":
-        listofQuestions = blonde.blondeC.Questions[questionLevel]
+    if Main.datelist[Main.currentdate] == "Blonde":
+        listofQuestions = blonde.BlondeC.Questions[questionLevel]
     elif Main.datelist[Main.currentdate] == "Red-Head":
         listofQuestions = redhead.redheadC.Questions[questionLevel]
     elif Main.datelist[Main.currentdate] == "Brunette":
@@ -86,7 +86,7 @@ def chooseGift():
         if Main.GiftPoints[Main.currentGift] > 0:
             print("She loved your gift and you just earned a bonus of ", Main.GiftPoints[Main.currentGift], " points!" )        
             Main.currentScore = Main.currentScore + Main.GiftPoints[Main.currentGift]
-        elif GiftPoints[Main.currentGift] < 0:
+        elif Main.GiftPoints[Main.currentGift] < 0:
             print("She hated your gift and you just lost ", Main.GiftPoints[Main.currentGift], " points!" )
             Main.currentScore = Main.currentScore + Main.GiftPoints[Main.currentGift]
         else:        
