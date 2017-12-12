@@ -1,0 +1,45 @@
+{
+  "Person":
+  [
+    {
+      "Emma": {
+        "Day1": {
+          "Like": [
+            {
+              "Question1": "Is there anything in particular you wanted to learn about around here?\n",
+              "Answers1": [
+                "I was hoping to check out the alchemy shop.",
+                "I am in need of some good food and some ale.",
+                "Finding a place to train with my blade was a bit of a high priority for me."
+              ],
+              "Responses1": [
+                "\"Oh, definitely! They have really good potions. It's down the street past the town square.\"",
+                "\"Definitely the tavern then. They have good prices, and its a great place to hear some rumors.\"",
+                "\"Really?? That's great! You should head down to the plains, that's where all of the town guardsman train. I train there too! I want to be a guard too, I've been training for a while.\""
+              ]
+            },
+            {
+              "Question2": "\n\"What do you plan on doing while you're in town?\"\n",
+              "Answers2": [
+                "I was planning on shopping around a little bit. I've heard a lot of good things about the goods sold from Aria.",
+                "Maybe check out the library. I was hoping to find something new to read.",
+                "Do you have any suggestions?"
+              ],
+              "Responses2": [
+                "\"The town square! They have food stalls, traveling merchants, entertainers, you name it. There's not a lot going on right now, but later today it will pick up.\"",
+                "\"Sure, right down that path. The librarian there is nice. She seems a little off to me, but... Anyway. They have a decent selection\"",
+                "\"Yeah, just walk around and talk to everyone. We're all very friendly here! There's the tavern, the library, the plains, the castle, there are a bunch of cool places here. Go and explore!\""
+              ],
+              "Introduction":[
+                "You see a woman walking through the townsquare somewhat aimlessly. She's very petite and is wearing a full suit of thin plate armor, and her brown hair is pulled into pigtails, which barely touches her shoulders. She looks your direction and smiles, and comes over to talk to you. \n\n \"Hi there! You don't look familiar. Did you just get here?\" \nYou can see from her face that she's pretty young, but her eyes are honest and she seems very genuine. \n\n You say yes, and introduce yourself.\n\n\"It's nice to meet you! I'm Emma. If you need any directions or information, let me know!\"",
+                "\nYou hear the bell toll, and realize it's now 10 o'clock.\n\n\"It was good talking to you, but I really have to run! I hope to see you again soon!\" She smiles and waves, and disappears past the other busy patrons in the market. You spend some time strolling around and checking out the different stalls, before you feel the ground start to rumble. "
+
+              ]
+
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
