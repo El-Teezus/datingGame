@@ -1,6 +1,6 @@
-class Player:
+class Protagonist:
     """
-    player is going to be the protagonist. I named this me. Deal with it.
+    player is going to be the protagonist. Has lots of changing locations.
     """
 
     def __init__(self, location, name):
@@ -10,5 +10,7 @@ class Player:
         self.location = location
         self.name = name
         self.inventory = 'inventory'
+        self.day = 'day1'
+        self.state = 'undecided'
 
-LT = Player('here','LT')
+player = Protagonist("village", "Hiro")

@@ -1,3 +1,5 @@
+
+
 """
 The controller class passes arguments to the Synonym Engine and the Object System, which then push requests to the objects and proper methods themselves.
 
@@ -5,15 +7,13 @@ So far, GoTo is a simple iteration that changes location, but needs to be change
 
 """
 
-import Room
+import Area
 import Player
-import synonym_system
 import Actions
-import DayOneMain
+
 
 inputmessage = ''
-
-
+# input message plays with the parsing of this game.
 
 def fixString(sentence):
     cutWords = [' the ', ' at ', ' to ', ' with ', ' the ', ' on ', ' like ']
@@ -29,6 +29,14 @@ def fixString(sentence):
     sentence = sentence.replace(" ", "")
     return sentence
 
+def locationVerifier(arugment):
+    """
+    Verification to ensure that players are in the same area as their things.
+    """
+    if arugment == Player.player.location:
+        return True
+    else:
+        print("You are not in the same area.")
 
 def selector(actionArgument, restofphrase):
     """
@@ -39,7 +47,7 @@ def selector(actionArgument, restofphrase):
     """
     for actionArg in Actions.PlayerActions.action_synonym:
         if actionArgument == Actions.PlayerActions.location_actions_synoym:
-            Room.Map.change_room(restofphrase)
+            Actions.PlayerActions.move(restofphrase)
             break
         elif actionArgument == Actions.PlayerActions.item_actions_synonym:
             print('hoi')
@@ -90,18 +98,4 @@ def trymessage(phrase):
     :return:
     """
     synonyms(phrase)
-    # if inputmessage[0:5] == 'go to':
-    #     ### inputmessage is going to use the synonym system
-    #     GoTos(inputmessage[6:])
-    # elif inputmessage[0:3] == 'use':
-    #     TheUseIts(inputmessage[4:])
-    # elif inputmessage[0:5] == 'check' or 'help' or 'help with':
-    #     print('check')
 
-# class Controller:
-#     global inputmessage
-#     def canDo(self):
-#         """
-#         determines if the thing can be done.
-#         :return:
-#         """

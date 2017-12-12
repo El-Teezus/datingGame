@@ -1,20 +1,16 @@
+
 import person
 import setpiece
 import Item
 import Player
-import Room
-#import synonym_system
+import Area
 import DataMaster
 import systemMessage
+import event
+import InventoryMain
+import _Main
 
 class PlayerActions:
-    # a class with all the player actions to interact while in the overworld
-
-    # def check(checkit):
-    #     #### check objects before they are interacted with.
-    #     if type(checkit) == Item or Person or Setpiece:
-    #         return checkit.desc
-
     location_actions_synoym = ['go', 'location', 'arrive', 'move']
 
     item_actions_synonym = ['use', 'apply', 'implement', 'deploy']
@@ -25,53 +21,42 @@ class PlayerActions:
 
     check_access_synonym = ['look', 'check', 'examine', 'view', 'look']
 
-    quit_game_synonym = ['stop', 'end', 'quit', 'die', 'anhero']
+    quit_game_synonym = ['stop', 'end ', 'quit', 'die', 'anhero']
 
     help_game_synonym = ['help', 'assist', 'commands', 'actions']
 
     action_synonym = [location_actions_synoym, item_actions_synonym, person_actions_synonym, get_access_itemSynonym, check_access_synonym, help_game_synonym, quit_game_synonym]
 
     def use(item):
-        # use item has some issues with keeping the item's effect
         if type(item) == Item.Item:
             item.used = True
             return item.used
-    # alternate dialogues according to what you're trying to talk to
-    #   > person: are you a sociopath? you can't just use people like that.
-    #   > setpiece: Everyone uses that. Stop being entitled
-    #   > location: I think you're looking for the toilet.
 
     def talk(livingThing):
-        # talk to a person, return key dialog
-        # if the class of object is a person
-        # this gets triggered when the synonym for talk is returned
         for synonymObjs in DataMaster.DataMaster.object_synonyms:
             for objs in synonymObjs:
                 if objs.name in livingThing:
-                    systemMessage.MessageGenerator.actionMessage('talked to', objs.name)
-                    print(objs.dialog)
-                    # if type(livingThing) == person.Person:
-                    #     print(livingThing)
-    # alternate dialogues according to what you're trying to talk to
-    #   > item: holding the item.name, and trying to talk to it, nothing happened
-    #   > setpiece: I recommend not doing that. someone could have you taken away to be studied.
-    #   > location: Trying to write a story I see?
+                    if DataMaster.locationVerifier(objs.location) is True:
+                        systemMessage.MessageGenerator.actionMessage('talked to', objs.formattedname)
+                        print(objs.dialog)
 
     def check(thing):
-        setpiece_synonym = [setpiece.theDragon, setpiece.computerSetPiece, setpiece.barSetPiece]
-        location_synonym = []
+        setpiece_synonym = setpiece.setPieceList
+        location_synonym = Area.Map.roomArray
         item_synonym = []
         people_synonym = []
         objectSynonyms = [setpiece_synonym, location_synonym, item_synonym, people_synonym]
-        print(thing)
-    # resolves the name of the item - objectSynonyms will be used
         for synonymList in objectSynonyms:
             for syonymItem in synonymList:
                 if syonymItem.name in thing:
-                    # returns the check description item.
-                    # next the player location and the thing location needs to be verified.
-                    systemMessage.MessageGenerator.actionMessage('checked', syonymItem.name)
-                    print(syonymItem.desc)
+                    if type(syonymItem) == Area.Area:
+                        Area.worldBuilder()
+                        break
+                    if DataMaster.locationVerifier(syonymItem.location) is True:
+                        # returns the check description item.
+                        # next the player location and the thing location needs to be verified.
+                        systemMessage.MessageGenerator.actionMessage('checked', syonymItem.name)
+                        print(syonymItem.desc)
 
     # confirmTypeArray = [Item.Item, Player.Player, setpiece.SetPiece, Room.Room, person.Person]
     # # examine an item, person, setpiece, or location
@@ -94,11 +79,27 @@ class PlayerActions:
         print('Thanks for Playing!')
         quit()
 
-LT = person.Person('hi', 'its me', 'here', 'LT')
+    def move(request):
+        """
+        Formerly changeRoom.
+        :return:
+        """
+        oldLocation = Player.player.location
+        for areaName in Area.Map.roomArray:
+            if oldLocation == areaName.name:
+                oldLocation = areaName.formattedtext
+        if Player.player.location in request:
+            print("You are already there.")
+        elif Player.player.location not in request:
+            for room in Area.Map.roomArray:
+                if room.name in request:
+                    if room.canAccess == True:
+                        Player.player.location = room.name
+                        print("You left the " + oldLocation + ", and went to the " + room.formattedtext)
+                        InventoryMain.brunette()
+                        event.dragonmain()
+                        _Main.main()
+                    else:
+                        print("You can't go there right now.")
 
-#mykyffn = Item.Item(553, "The mykyffn", "don't look in the box", "bar")
-#print(mykyffn.used)
-#PlayerActions.use(mykyffn)
-#print('hello')
-#print(mykyffn.used)
 

@@ -3,34 +3,31 @@ main is where we have the initiated commands and probably the constructors. More
 """
 
 import Controller
-import person
-import Item
-import Room
-import Player
+import event
 
-gameDesc = "The Bad Thing is doing Things We Don't Like. We Need to Find a Way to Kill THE BAD THING. "
+
+gameDesc = "                         ~******************************************************************************************~\n" \
+           "                         ~##########################################################################################~\n" \
+           "                         ~###########LawrenceThompson#########################################DanielRubin###########~\n" \
+           "                         ~##################################### TBD: the Game ######################################~\n" \
+           "                         ~******************************************************************************************~\n" \
+           "                         +-------------------------------TEXT BASED DATING the GAME!!!------------------------------+\n" \
+           "                         ~******************************************************************************************~\n" \
+           "                         ~####################### El-Teezy and the Beautiful Indigo Children #######################~\n" \
+           "                         ~##########################################################################################~\n" \
+           "                         ~######################################HannahYudkin########################################~\n" \
+           "                         ~##########################################################################################~\n" \
+           "                         ~******************************************************************************************~\n"
 
 
 
 def main():
     itsrunning = "true"
     print(gameDesc)
+    event.intro()
     while itsrunning == "true":
-        Controller.inputmessage = input('what are you going to do?')
+        Controller.inputmessage = input('what are you going to do? \n')
         Controller.trymessage(Controller.inputmessage)
 
 main()
 
-
-classroom = Room.Room('P132', 'COMP830: Object Oriented Software Development')
-untitled_not_really_mastered = Item.Item(47, 'dating game', 'probably the G.O.A.T', 'in our hearts')
-fellow_kids = person.Person('fellow kids', 'how do you do', 'the hallway', 'fellow kids')
-
-
-# def test():
-#     print('This is ' + LT.name + " and I'm " + LT.location)
-#     print('We are in ' + classroom.name + ', for ' + classroom.desc)
-#     print('You are going to be able to talk to the average person. ' + fellow_kids.dialog + " " + fellow_kids.name)
-#
-#
-# test()
