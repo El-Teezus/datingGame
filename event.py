@@ -1,5 +1,12 @@
 import person
 import Player
+import json
+import InventoryMain
+from collections import namedtuple
+
+jdat = json.load(open("dialog2.json"))
+decodedJsonStr = json.dumps(jdat)
+data = json.loads(decodedJsonStr, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
 
 class event:
     """
@@ -51,8 +58,12 @@ def intro():
         print()
         print('You thank the man for the ride and put a single coin into his hand. He tips his hat at you and spurs his horse forward, continuing on his own journey. You look toward the town and can hear the bustling of people within. You head inside through the main gates and look around. ')
 
+wakeupParam = event('tavern', 'day2')
+
 def wakeup():
-    print("You have awoken in the Tavern to searing pain. Once awake. You realize that you need to find a way to defeat this dragon before it further terrorizes the lives of the people in this town. But first, you need to find out where it is, and how you can defeat it.")
+    if requirements(Player.player.location == 'tavern', Player.player.day == 'day1', wakeupParam.occurred == False) is True:
+        print("You have awoken in the Tavern to searing pain. Once awake. You realize that you need to find a way to defeat this dragon before it further terrorizes the lives of the people in this town. But first, you need to find out where it is, and how you can defeat it.")
+        wakeupParam.occurred = True
 
 def dragonmain():
     """
@@ -95,7 +106,7 @@ def dragonmain():
                     Player.player.location = 'tavern'
                     DragonAttack.occurred = True
                     Player.player.day = 'day2'
-                    wakeup()
+
                 else:
                     print('Make legal selection')
             else:
@@ -116,15 +127,70 @@ def barmain():
         else:
             print('Failure')
 
+def quitgame():
+        print('Thanks for Playing!')
+        quit()
+
+def firstEmma():
+    if requirements(Player.player.day == 'day1', Player.player.location == 'townsquare', firstEmmaParam.occurred == False) is True:
+        print("You see a girl in the plains, swinging a short sword, the breeze of the square making her brown hair sway in the wind.\n She's largely focused on sprint-like movements, so she's rather exhausted.\n Are you here to challenge me? Did that rat Viktor send you? \n Ahh excuse me, sorry for being so brash. I say stupid things when I do cardio. It's worse than when I drink. My name is Emma.")
+        firstEmmaParam.occurred = True
+
+enterCaveParam = event('cave', 'day2')
+
+def enterCave():
+    if requirements(Player.player.day == 'day1', Player.player.location == 'cave', enterCaveParam == True) is True:
+        print(" With all the courage you can muster, you decide to make your way down to the dragon’s lair. \n It sits atop a mountain, with the opening of the cave overlooking the entire valley. A villager points you toward the correct path you must take, and you begin the long trek upwards.\n "
+          "As you follow the passage, the smell of sulfur fills the air and you can see trees uprooted and broken branches everywhere. The dirt beneath your feet quickly changes to jagged rocks, and the journey becomes much more difficult as you reach a wall of stone.\n  You can barely see the entrance of the cave at the height of the cliff.\n You grab a piece of rock jutting out from the wall in front of you, and use it to hoist yourself upwards. More climbing follows, and you struggle to find adequate footing.\n Finally, your hand reaches the top, and you heave yourself over the edge. With shallow breaths, you stand and the wind bellows over your shoulder.\nYou reach the entrance. As you look inside, darkness is the only thing that greets you. However, deep within a snarl resounds, and you realize this is it.\n This is your last opportunity to run away. What do you do?\nYou ready yourself for the fight that is about to unfold. You think about all of the people of Aria depending on you, and you are filled with determination.\n ")
+    enterCaveParam.occurred = True
 
 
 def winState():
-    if requirements(Player.player.day == 'day2', Player.player.state == 'win', Player.player.location == 'cave'):
-        print("The dragon is now defeated. You teleported behind it and stabbed it. If it could understand English, it would have heard you say 'nothing personal kid'.")
+    if requirements(Player.player.day == 'day2', Player.player.state == 'win', Player.player.location == 'cave', enterCaveParam.occurred == True) is True:
+        print("You take the short sword that Emma gave you and ran towards the dragon. As you charge the dragon, you dodge the flame with a catlike agility that would make your trainer cry in it's beauty. \nThe dragon, dealt a pierced blow in between the scales of it's stomach, bled to death and you couldn't understand a word of its tongue, but you're certain that it cried out with anger. \n As you leave the cave, you wonder if a being like this had sentience or even an intelligent tongue. That's all behind you now, and you are sure to have a good future with Emma. ")
+        quitgame()
+
 
 
 
 
 def loseState():
-    if requirements(Player.player.day == 'day2', Player.player.location == 'cave', Player.player.state == 'lose'):
-        print('You got gored by the dragon and will now enjoy the sweet sweet release of death.')
+    if requirements(Player.player.day == 'day2', Player.player.location == 'cave', Player.player.state == 'lose', enterCaveParam.occurred == True) is True:
+        print('As you charged the dragon, you drew your knife, like you would when running through the woods as a child. However, you would sometimes lose your footing and trip. This would be an unfortunate callback to childhood.\n As you fell down, your back against the cold granite, the dragon pushed back its talons and inserted them into your stomach, forcibly. \n Luckily, you lost consciousness before that, and only had one moment of nostalgia before hearing the answer to the great question. ')
+        quitgame()
+
+
+firstEmmaParam = event('plains', 'day1')
+
+def EmmaIntroduction():
+    if requirements(Player.player.day == 'day1',Player.player.location == 'townsquare', firstEmmaParam.occurred == False) is True:
+        print(data.Person[0].Emma[0][0][1].Introduction[0])
+        print(data.Person[0].Emma[0][0][0].Question1)
+        print(data.Person[0].Emma[0][0][0].Answers1[0])
+        print(data.Person[0].Emma[0][0][0].Answers1[1])
+        print(data.Person[0].Emma[0][0][0].Answers1[2])
+        selection = input('--->   ')
+        if selection == data.Person[0].Emma[0][0][0].Answers1[0] or selection == '1':
+            print(data.Person[0].Emma[0][0][0].Responses1[0])
+        elif selection == data.Person[0].Emma[0][0][0].Answers1[1] or selection == '2':
+            print(data.Person[0].Emma[0][0][0].Responses1[1])
+        elif selection == data.Person[0].Emma[0][0][0].Answers1[2] or selection == '3':
+            print(data.Person[0].Emma[0][0][0].Responses1[2])
+        print(data.Person[0].Emma[0][0][1].Question2)
+        print(data.Person[0].Emma[0][0][1].Answers2[0])
+        print(data.Person[0].Emma[0][0][1].Answers2[1])
+        print(data.Person[0].Emma[0][0][1].Answers2[2])
+        selection = input('--->   ')
+        if selection == data.Person[0].Emma[0][0][1].Answers2[0] or selection == '1':
+            print(data.Person[0].Emma[0][0][1].Responses2[0])
+        elif selection == data.Person[0].Emma[0][0][1].Answers2[1] or selection == '2':
+            print(data.Person[0].Emma[0][0][1].Responses2[1])
+        elif selection == data.Person[0].Emma[0][0][1].Answers2[2] or selection == '3':
+            print(data.Person[0].Emma[0][0][1].Responses2[2])
+        print(data.Person[0].Emma[0][0][1].Introduction[1])
+        print()
+    firstEmmaParam.occurred = True
+    print(firstEmmaParam.occurred)
+    dragonmain()
+
+

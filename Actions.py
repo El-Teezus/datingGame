@@ -96,10 +96,12 @@ class PlayerActions:
                     if room.canAccess == True:
                         Player.player.location = room.name
                         print("You left the " + oldLocation + ", and went to the " + room.formattedtext)
-                        InventoryMain.brunette()
-                        event.dragonmain()
-                        _Main.main()
+                        event.EmmaIntroduction()
+                        InventoryMain.main()
+                        event.enterCave()
+                        event.wakeup()
+                        event.winState()
+                        event.loseState()
+
                     else:
                         print("You can't go there right now.")
-
-
